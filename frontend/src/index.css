@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 dark:bg-[#0f0f0f] text-gray-900 dark:text-gray-100 antialiased transition-colors duration-200;
+    @apply bg-gray-50 dark:bg-[#050d08] text-gray-900 dark:text-gray-100 antialiased transition-colors duration-200;
   }
   
   html.dark {
@@ -32,15 +32,15 @@
   }
   
   .btn-secondary {
-    @apply bg-gray-200 dark:bg-[#2a2a2a] text-gray-800 dark:text-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300 dark:hover:bg-[#3a3a3a] transition-colors duration-200 font-medium;
+    @apply bg-gray-200 dark:bg-[#0f2116] text-gray-800 dark:text-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300 dark:hover:bg-[#162e20] transition-colors duration-200 font-medium;
   }
   
   .card {
-    @apply bg-white dark:bg-[#1a1a1a] rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-200;
+    @apply bg-white dark:bg-[#0b1810] rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-200 border border-transparent dark:border-[#162b1e];
   }
   
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#2a2a2a] text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all duration-200;
+    @apply w-full px-4 py-2 border border-gray-300 dark:border-[#162b1e] bg-white dark:bg-[#0c1911] text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all duration-200;
   }
   
   .label {
