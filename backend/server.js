@@ -21,6 +21,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
+  'https://thriving-semifreddo-57646c.netlify.app',
   'https://ai-fsd.netlify.app',
   'https://ai-analytics-employee.netlify.app',
   'https://ai-fsd-ese.onrender.com',

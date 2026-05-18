@@ -5,9 +5,9 @@
 Full-stack MERN application with AI-powered employee performance analytics and recommendations.
 
 ## 🔗 Live URLs
-- **Frontend**: https://ai-fsd.netlify.app
-- **Backend API**: https://ai-based-employee-performance-analytics-zunw.onrender.com
-- **GitHub Repository**: https://github.com/aditya3012singh/ai-fsd-ese
+- **Frontend**: https://thriving-semifreddo-57646c.netlify.app
+- **Backend API**: https://aifsd-ese-kxwm.onrender.com
+- **GitHub Repository**: https://github.com/tensorbytes0202/aifsd-_ese
 
 ## 🛠️ Tech Stack
 - **Frontend**: React.js, Vite, Tailwind CSS, Axios
