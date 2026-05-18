@@ -1,0 +1,13 @@
+@echo off
+echo Fixing Vite dev server...
+echo.
+echo Step 1: Stopping any running processes...
+taskkill /F /IM node.exe 2>nul
+timeout /t 2 /nobreak >nul
+echo.
+echo Step 2: Clearing Vite cache...
+if exist .vite rmdir /s /q .vite
+if exist dist rmdir /s /q dist
+echo.
+echo Step 3: Starting dev server...
+npm run dev
