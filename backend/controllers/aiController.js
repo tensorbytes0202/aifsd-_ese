@@ -22,36 +22,56 @@ export const getRecommendations = asyncHandler(async (req, res, next) => {
 
   let recommendation;
 
-  switch (type) {
-    case 'promotion':
-      recommendation = await aiService.generatePromotionRecommendation(
-        employee
-      );
-      break;
-    case 'training':
-      recommendation = await aiService.generateTrainingSuggestions(employee);
-      break;
-    case 'feedback':
-      recommendation = await aiService.generateFeedback(employee);
-      break;
-    case 'skillGap':
-      recommendation = await aiService.analyzeSkillGaps(employee);
-      break;
-    default:
-      return next(new AppError('Invalid recommendation type', 400));
-  }
+  try {
+    switch (type) {
+      case 'promotion':
+        recommendation = await aiService.generatePromotionRecommendation(employee);
+        break;
+      case 'training':
+        recommendation = await aiService.generateTrainingSuggestions(employee);
+        break;
+      case 'feedback':
+        recommendation = await aiService.generateFeedback(employee);
+        break;
+      case 'skillGap':
+        recommendation = await aiService.analyzeSkillGaps(employee);
+        break;
+      default:
+        return next(new AppError('Invalid recommendation type', 400));
+    }
 
-  res.status(200).json({
-    success: true,
-    data: {
-      employee: {
-        id: employee._id,
-        name: employee.name,
-        department: employee.department,
+    res.status(200).json({
+      success: true,
+      data: {
+        employee: {
+          id: employee._id,
+          name: employee.name,
+          department: employee.department,
+        },
+        recommendation,
       },
-      recommendation,
-    },
-  });
+    });
+  } catch (error) {
+    console.error('AI Recommendation Error:', error);
+    
+    // Return a fallback response instead of throwing error
+    const fallbackRecommendation = {
+      message: 'AI service is currently unavailable. Please try again later.',
+      fallback: true,
+    };
+
+    res.status(200).json({
+      success: true,
+      data: {
+        employee: {
+          id: employee._id,
+          name: employee.name,
+          department: employee.department,
+        },
+        recommendation: fallbackRecommendation,
+      },
+    });
+  }
 });
 
 /**

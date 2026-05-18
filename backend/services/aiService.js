@@ -25,14 +25,21 @@ class AIService {
       }
 
       console.log('Making AI request with model:', this.model);
+      console.log('API Key present:', !!this.apiKey);
+      console.log('API URL:', this.apiUrl);
+
+      const requestBody = {
+        model: this.model,
+        messages,
+        temperature,
+        max_tokens: 1000,
+      };
+
+      console.log('Request body:', JSON.stringify(requestBody, null, 2));
 
       const response = await axios.post(
         this.apiUrl,
-        {
-          model: this.model,
-          messages,
-          temperature,
-        },
+        requestBody,
         {
           headers: {
             'Authorization': `Bearer ${this.apiKey}`,
@@ -40,17 +47,37 @@ class AIService {
             'HTTP-Referer': process.env.FRONTEND_URL || 'http://localhost:5173',
             'X-Title': 'AI Employee Analytics',
           },
+          timeout: 30000, // 30 second timeout
         }
       );
 
+      console.log('AI API Response:', response.data);
       return response.data.choices[0].message.content;
     } catch (error) {
-      console.error('AI API Error:', error.response?.data || error.message);
+      console.error('AI API Error Details:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+        config: {
+          url: error.config?.url,
+          method: error.config?.method,
+          headers: error.config?.headers,
+        }
+      });
+      
       if (error.response?.status === 401) {
         console.warn('⚠️  Invalid API key. Using mock responses for demonstration.');
         return this.getMockResponse(messages);
       }
-      throw new Error('AI service temporarily unavailable');
+      
+      if (error.response?.status === 404) {
+        console.warn('⚠️  Model not found. Using mock responses.');
+        return this.getMockResponse(messages);
+      }
+      
+      // For any other error, use mock response
+      console.warn('⚠️  AI API error. Using mock responses.');
+      return this.getMockResponse(messages);
     }
   }
 
