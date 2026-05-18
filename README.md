@@ -5,8 +5,8 @@
 Full-stack MERN application with AI-powered employee performance analytics and recommendations.
 
 ## 🔗 Live URLs
-- **Frontend**: https://ai-analytics-employee.netlify.app
-- **Backend API**: https://ai-fsd-ese.onrender.com
+- **Frontend**: https://ai-fsd.netlify.app
+- **Backend API**: https://ai-based-employee-performance-analytics-zunw.onrender.com
 - **GitHub Repository**: https://github.com/aditya3012singh/ai-fsd-ese
 
 ## 🛠️ Tech Stack
