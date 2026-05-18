@@ -1,0 +1,40 @@
+services:
+  # Backend Service
+  - type: web
+    name: employee-analytics-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRE
+        value: 7d
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: AI_MODEL
+        value: openai/gpt-3.5-turbo
+      - key: AI_API_URL
+        value: https://openrouter.ai/api/v1/chat/completions
+      - key: FRONTEND_URL
+        sync: false
+
+  # Frontend Service
+  - type: web
+    name: employee-analytics-frontend
+    env: static
+    region: oregon
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false

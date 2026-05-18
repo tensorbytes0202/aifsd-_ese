@@ -19,7 +19,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: [
+    process.env.FRONTEND_URL || 'http://localhost:5173',
+    'https://ai-analytics-employee.netlify.app',
+    'https://ai-fsd-ese.onrender.com'
+  ],
   credentials: true,
 }));
 app.use(express.json());

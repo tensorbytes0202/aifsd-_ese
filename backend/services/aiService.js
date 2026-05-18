@@ -8,7 +8,9 @@ class AIService {
     this.apiKey = process.env.OPENROUTER_API_KEY;
     this.apiUrl =
       process.env.AI_API_URL || 'https://openrouter.ai/api/v1/chat/completions';
-    this.model = process.env.AI_MODEL || 'openai/gpt-3.5-turbo';
+    this.model = process.env.AI_MODEL || 'meta-llama/llama-3.2-3b-instruct:free';
+    
+    console.log('AI Service initialized with model:', this.model);
   }
 
   /**
